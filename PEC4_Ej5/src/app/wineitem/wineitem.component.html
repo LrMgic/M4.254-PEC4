@@ -1,0 +1,10 @@
+<div class="stock-container" [class]="wineitem.isOnSale ? 'stockOK2' : 'stockNOK2'">
+  <img src="{{ wineitem.imageUrl }}" alt="Imagen del vino: {{wineitem.name}}">
+  <div class="header"><h2>{{wineitem.name}}</h2> - <h3 [class]="wineitem.isOnSale ? 'stockOK1' : 'stockNOK1'">{{alavenda}}</h3></div>
+  <div class="foodPairing">Maridaje recomendado: <app-fooditem *ngFor="let food of foods" [food]="food"></app-fooditem></div>
+  <div class="isOnSale">Precio unitario: <b>{{wineitem.price}} €</b></div>
+  <div class="isOnSale">Tu pedido: {{wineitem.quantityInCart}} unidades</div>
+  <button (click)="toggleDown()"
+          [disabled]="quantityNot">(-)</button>
+          <button (click)="toggleUp()">(+)</button>
+</div>

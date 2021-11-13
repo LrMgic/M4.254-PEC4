@@ -1,0 +1,29 @@
+.stock-container {
+  border: 2px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+}
+
+.stock-container .header h2,
+.stock-container .header h3 {
+  display: inline-block;
+}
+
+.stockOK1 {
+  color: green;
+}
+
+.stockNOK1 {
+  color: red;
+}
+
+.stockOK2 {
+  border-color: green;
+  box-shadow: 5px 4px #00800098
+}
+
+.stockNOK2 {
+  border-color: red;
+  box-shadow: 5px 4px rgba(255, 0, 0, 0.582);
+}
