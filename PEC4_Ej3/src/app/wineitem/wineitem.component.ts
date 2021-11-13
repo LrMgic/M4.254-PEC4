@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FoodDTO } from '../models/food';
+import { WineDTO } from '../models/wine';
 
 @Component({
   selector: 'app-wineitem',
@@ -6,37 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wineitem.component.scss'],
 })
 export class WineitemComponent implements OnInit {
-  public prova!: string;
-  public name!: string;
-  public imageUrl!: string;
-  public price!: number;
-  public isOnSale!: boolean;
-  public quantityInCart!: number;
+  public wineitem: WineDTO;
+  public foods: FoodDTO[] = [];
   public foodPairing!: string;
   public alavenda!: string;
   public quantityNot!: boolean;
-
-  constructor() {}
+  constructor() {
+    this.wineitem = new WineDTO('Viña esmeralda', 'assets/img/Vina_esmeralda_2019.png', 6.15, false, 6);
+  }
 
   ngOnInit() {
-    this.prova = 'una prova';
-    this.name = 'Viña esmeralda';
-    this.price = 6.15;
-    this.imageUrl = 'assets/img/Vina_esmeralda_2019.png';
-    this.isOnSale = false;
-    if (this.isOnSale) {
+    this.foods.push(new FoodDTO('Queso', 150, false, false));
+    this.foods.push(new FoodDTO('Pescado', 80, false, false));
+    this.foods.push(new FoodDTO('Pan', 180, true, true));
+    if (this.wineitem.isOnSale) {
       this.alavenda = 'EN STOCK!';
     } else {
       this.alavenda = 'AGOTADO';
     }
-    this.quantityInCart = 6;
-    this.foodPairing = 'Queso';
+
   }
 
   toggleDown() {
-    this.quantityInCart = this.quantityInCart - 1;
+    this.wineitem.quantityInCart = this.wineitem.quantityInCart - 1;
 
-    if (this.quantityInCart > 1) {
+    if (this.wineitem.quantityInCart > 1) {
       this.quantityNot = false;
     } else {
       this.quantityNot = true;
@@ -44,6 +40,6 @@ export class WineitemComponent implements OnInit {
   }
 
   toggleUp() {
-    this.quantityInCart = this.quantityInCart + 1;
+    this.wineitem.quantityInCart = this.wineitem.quantityInCart + 1;
   }
 }
