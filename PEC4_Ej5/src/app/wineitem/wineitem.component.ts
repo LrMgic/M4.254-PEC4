@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FoodDTO } from '../models/food';
 import { WineDTO } from '../models/wine';
 
@@ -13,8 +13,28 @@ export class WineitemComponent implements OnInit {
   public foodPairing!: string;
   public alavenda!: string;
   public quantityNot!: boolean;
+  public quantity: number;
+  public quantities: any;
   constructor() {
-    this.wineitem = new WineDTO('Viña esmeralda', 'assets/img/Vina_esmeralda_2019.png', 6.15, false, 6);
+    this.wineitem = new WineDTO(
+      'Viña esmeralda',
+      'assets/img/Vina_esmeralda_2019.png',
+      6.15,
+      false,
+      7
+    );
+    this.quantities = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    ];
+    this.quantity = this.wineitem.quantityInCart;
+  }
+
+  empty() {
+    if (this.wineitem.quantityInCart < 1) {
+      this.quantityNot = false;
+    } else {
+      this.quantityNot = true;
+    }
   }
 
   ngOnInit() {
@@ -26,20 +46,20 @@ export class WineitemComponent implements OnInit {
     } else {
       this.alavenda = 'AGOTADO';
     }
-
+    this.empty();
   }
 
   toggleDown() {
     this.wineitem.quantityInCart = this.wineitem.quantityInCart - 1;
-
-    if (this.wineitem.quantityInCart > 1) {
-      this.quantityNot = false;
-    } else {
-      this.quantityNot = true;
-    }
+    this.empty();
   }
 
   toggleUp() {
     this.wineitem.quantityInCart = this.wineitem.quantityInCart + 1;
+    this.empty();
+  }
+
+  onSelect(quantity: number) {
+    this.wineitem.quantityInCart = quantity
   }
 }
