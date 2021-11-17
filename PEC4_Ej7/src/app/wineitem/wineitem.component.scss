@@ -1,4 +1,5 @@
 .stock-container {
+  margin: 30px;
   border: 2px solid black;
   border-radius: 5px;
   display: inline-block;
@@ -8,6 +9,10 @@
 .stock-container .header h2,
 .stock-container .header h3 {
   display: inline-block;
+}
+
+.imgVi {
+  height: 300px;
 }
 
 .stockOK1 {

@@ -3,20 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FoodlistComponent } from './foodlist/foodlist.component';
 import { WineitemComponent } from './wineitem/wineitem.component';
-import { FooditemComponent } from './fooditem/fooditem.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WineitemComponent,
-    FooditemComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, WineitemComponent, FoodlistComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

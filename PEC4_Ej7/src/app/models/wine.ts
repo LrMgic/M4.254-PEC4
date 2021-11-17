@@ -1,4 +1,4 @@
-import { Food, FoodDTO } from "./food";
+import { Food, FoodDTO } from './food';
 
 export interface Wine {
   name: string;
@@ -22,12 +22,14 @@ export class WineDTO {
     imageUrl: string,
     price: number,
     isOnSale: boolean,
-    quantityInCart: number
+    quantityInCart: number,
+    foodPairing?: FoodDTO[]
   ) {
     this.name = name;
     this.imageUrl = imageUrl;
     this.price = price;
     this.isOnSale = isOnSale;
     this.quantityInCart = quantityInCart;
+    this.foodPairing = foodPairing;
   }
 }

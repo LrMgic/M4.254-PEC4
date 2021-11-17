@@ -1,1 +1,1 @@
-<p>winelist works!</p>
+<app-wineitem *ngFor="let wineitem of wines" [wineitem]="wineitem" (quantityCambiada)="wineitem.quantityInCart = $event"></app-wineitem>

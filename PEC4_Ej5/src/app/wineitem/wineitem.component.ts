@@ -13,7 +13,7 @@ export class WineitemComponent implements OnInit {
   public foodPairing!: string;
   public alavenda!: string;
   public quantityNot!: boolean;
-  public quantity: number;
+  public quantity: any = "";
   public quantities: any;
   constructor() {
     this.wineitem = new WineDTO(
@@ -30,6 +30,7 @@ export class WineitemComponent implements OnInit {
   }
 
   empty() {
+    console.log("Numero " + this.wineitem.quantityInCart)
     if (this.wineitem.quantityInCart < 1) {
       this.quantityNot = false;
     } else {
