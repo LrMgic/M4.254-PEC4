@@ -1,27 +1,45 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { WineDTO } from '../models/wine';
 
 @Component({
   selector: 'app-wineitem',
   templateUrl: './wineitem.component.html',
   styleUrls: ['./wineitem.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WineitemComponent implements OnInit {
-  @Input()
-  wineitem!: WineDTO;
-  @Output() quantityCambiada = new EventEmitter<number>();
+  @Input() public Wine!: WineDTO;
+  @Output() private WineQuantityChange: EventEmitter<[string, number]>;
+  @Output() private downChangeDetection: EventEmitter<[string, number]>;
+  @Output() private upChangeDetection: EventEmitter<[string, number]>;
+  public wineitem!: WineDTO;
   public foodPairing!: string;
   public alavenda!: string;
   public quantityNot!: boolean;
   public quantity!: number;
   public quantities: any;
   constructor() {
+    this.WineQuantityChange = new EventEmitter<[string, number]>();
+    this.downChangeDetection = new EventEmitter<[string, number]>();
+    this.upChangeDetection = new EventEmitter<[string, number]>();
     this.quantities = [
       0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
   }
 
   ngOnInit() {
+    this.wineitem = this.Wine;
+    this.WineQuantityChange.emit([
+      this.wineitem.name,
+      this.wineitem.quantityInCart,
+    ]);
     if (this.wineitem.isOnSale) {
       this.alavenda = 'EN STOCK!';
     } else {
@@ -32,7 +50,6 @@ export class WineitemComponent implements OnInit {
   }
 
   empty() {
-    this.quantityCambiada.emit(this.wineitem.quantityInCart);
     if (this.wineitem.quantityInCart < 1) {
       this.quantityNot = false;
     } else {
@@ -40,18 +57,19 @@ export class WineitemComponent implements OnInit {
     }
   }
 
-  toggleDown() {
-    this.wineitem.quantityInCart = this.wineitem.quantityInCart - 1;
+  toggleDown(event: any) {
+    this.downChangeDetection.emit([
+      this.wineitem.name,
+      this.wineitem.quantityInCart,
+    ]);
     this.empty();
   }
 
-  toggleUp() {
-    this.wineitem.quantityInCart = this.wineitem.quantityInCart + 1;
-    this.empty();
-  }
-
-  onSelect(quantity: number) {
-    this.wineitem.quantityInCart = quantity;
+  toggleUp(event: any) {
+    this.upChangeDetection.emit([
+      this.wineitem.name,
+      this.wineitem.quantityInCart,
+    ]);
     this.empty();
   }
 }

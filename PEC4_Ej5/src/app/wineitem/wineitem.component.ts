@@ -13,7 +13,6 @@ export class WineitemComponent implements OnInit {
   public foodPairing!: string;
   public alavenda!: string;
   public quantityNot!: boolean;
-  public quantity: any = "";
   public quantities: any;
   constructor() {
     this.wineitem = new WineDTO(
@@ -26,11 +25,10 @@ export class WineitemComponent implements OnInit {
     this.quantities = [
       0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
-    this.quantity = this.wineitem.quantityInCart;
   }
 
   empty() {
-    console.log("Numero " + this.wineitem.quantityInCart)
+    console.log('Numero ' + this.wineitem.quantityInCart);
     if (this.wineitem.quantityInCart < 1) {
       this.quantityNot = false;
     } else {
@@ -58,9 +56,5 @@ export class WineitemComponent implements OnInit {
   toggleUp() {
     this.wineitem.quantityInCart = this.wineitem.quantityInCart + 1;
     this.empty();
-  }
-
-  onSelect(quantity: number) {
-    this.wineitem.quantityInCart = quantity
   }
 }

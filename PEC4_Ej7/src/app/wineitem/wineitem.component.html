@@ -3,17 +3,14 @@
   <div class="header">
     <h2>{{wineitem.name}}</h2> - <h3 [ngClass]="wineitem.isOnSale ? 'stockOK1' : 'stockNOK1'">{{alavenda}}</h3>
   </div>
-  <div class="foodPairing">Maridaje recomendado: <app-foodlist *ngFor="let food of wineitem.foodPairing" [food]="food"></app-foodlist>
+  <div class="foodPairing">Maridaje recomendado: <app-foodlist *ngFor="let food of wineitem.foodPairing" [food]="food">
+    </app-foodlist>
   </div>
   <div class="isOnSale">Precio unitario: <b>{{wineitem.price}} €</b></div>
-  <div class="isOnSale">Tu pedido:
-    <select name="OS">
-      <option *ngFor="let quantityValue of quantities" value="quantityValue" (click)="onSelect(quantity)"
-        [selected]="wineitem.quantityInCart === quantityValue">{{quantityValue}} unidades</option>
-    </select>In
-    <button (click)="toggleDown()" *ngIf="quantityNot">(-)</button>
-    <button (click)="toggleUp()">(+)</button>
+  <div class="isOnSale"><span *ngIf="wineitem.quantityInCart > 1">Tu pedido: {{wineitem.quantityInCart}}
+      unidades</span><span *ngIf="wineitem.quantityInCart === 1">Tu pedido: {{wineitem.quantityInCart}}
+      unidad</span><span *ngIf="wineitem.quantityInCart === 0">Agregue producto a su lista</span>
+    <button (click)="toggleDown($event)" *ngIf="quantityNot">(-)</button>
+    <button (click)="toggleUp($event)">(+)</button>
   </div>
-  <!--
-[ngIf]=
-*ngIf="wineitem.quantityInCart = quantityValue: 'selected="true"'" -->
+</div>

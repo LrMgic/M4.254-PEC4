@@ -8,12 +8,10 @@
   <div class="isOnSale">Precio unitario: <b>{{wineitem.price}} €</b></div>
   <div class="isOnSale">Tu pedido:
     <select name="OS">
-      <option *ngFor="let quantityValue of quantities" value="quantityValue" (click)="onSelect(quantity)"
+      <option *ngFor="let quantityValue of quantities" value="quantityValue"
         [selected]="wineitem.quantityInCart === quantityValue">{{quantityValue}} unidades</option>
     </select>In
     <button (click)="toggleDown()" *ngIf="quantityNot">(-)</button>
     <button (click)="toggleUp()">(+)</button>
   </div>
-  <!--
-[ngIf]=
-*ngIf="wineitem.quantityInCart = quantityValue: 'selected="true"'" -->
+</div>

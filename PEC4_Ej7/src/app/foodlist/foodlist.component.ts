@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Food, FoodDTO } from '../models/food';
+import { FoodDTO } from '../models/food';
 
 @Component({
   selector: 'app-foodlist',

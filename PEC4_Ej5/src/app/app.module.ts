@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -6,12 +7,8 @@ import { FoodlistComponent } from './foodlist/foodlist.component';
 import { WineitemComponent } from './wineitem/wineitem.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WineitemComponent,
-    FoodlistComponent,
-  ],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, WineitemComponent, FoodlistComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

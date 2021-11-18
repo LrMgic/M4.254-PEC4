@@ -1,6 +1,7 @@
 import { Food, FoodDTO } from './food';
 
 export interface Wine {
+  id: number;
   name: string;
   imageUrl: string;
   price: number;
@@ -10,6 +11,7 @@ export interface Wine {
 }
 
 export class WineDTO {
+  id: number;
   name: string;
   imageUrl: string;
   price: number;
@@ -18,6 +20,7 @@ export class WineDTO {
   foodPairing?: FoodDTO[];
 
   constructor(
+    id: number,
     name: string,
     imageUrl: string,
     price: number,
@@ -25,6 +28,7 @@ export class WineDTO {
     quantityInCart: number,
     foodPairing?: FoodDTO[]
   ) {
+    this.id = id
     this.name = name;
     this.imageUrl = imageUrl;
     this.price = price;
